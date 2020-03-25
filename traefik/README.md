@@ -15,8 +15,8 @@ kubectl apply -f ./kubernetes-ingress-controller/traefik/samples/simple.yaml
 3. Verification
 vi /etc/hosts and add
 <Your ingress controller IP> ingress1.test.cn
-<Your ingress controller IP> simpleingressroute1.test.cn
+<Your ingress controller IP> simpleingressroute.test.cn
 
 curl ingress1.test.cn
-curl simpleingressroute1.test.cn
-curl simpleingressroute1.test.cn -H "Eason:yes"
+curl simpleingressroute.test.cn
+curl simpleingressroute.test.cn -H "Eason:yes"

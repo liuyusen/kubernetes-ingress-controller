@@ -95,13 +95,13 @@ spec:
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: simpleingressroute1
+  name: simpleingressroute
   namespace: default
 spec:
   entryPoints:
     - web
   routes:
-    - match: Host(`simpleingressroute1.test.cn`) && Headers(`Eason`, `yes`)
+    - match: Host(`simpleingressroute.test.cn`) && Headers(`Eason`, `yes`)
       kind: Rule
       services:
         - name: service1
@@ -110,3 +110,22 @@ spec:
         - name: service2
           port: 80
           weight: 80
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: simpleingressroute-header-regexp
+  namespace: default
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`simpleingressroute.test.cn`) && HeadersRegexp(`Source`, `(Steven)*|(Eason)*`)
+      kind: Rule
+      services:
+        - name: service1
+          port: 80
+          weight: 50
+        - name: service2
+          port: 80
+          weight: 50
