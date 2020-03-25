@@ -3,16 +3,14 @@ wget https://get.helm.sh/helm-v3.1.2-linux-amd64.tar.gz
 tar -zxvf helm-v3.1.2-linux-amd64.tar.gz
 mv linux-amd64/helm /usr/local/bin/helm
 git clone https://github.com/containous/traefik-helm-chart
-helm install ./traefik-helm-chart/traefik --generate-name
-
-kubectl edit deployment traefik
-Add the following arg to container args of traefik deployment:
---providers.kubernetesIngress
+helm install traefik-2-0 ./traefik-helm-chart/traefik --set="image.tag=2.0,additionalArguments={--providers.kubernetesingress,--providers.kubernetesingress.ingressclass=traefik-2.0}"
 
 2. Install Sample
 kubectl apply -f ./kubernetes-ingress-controller/traefik/samples/simple.yaml
 
 3. Verification
+Get ingress controller IP:
+kubectl get service traefik-2-0
 vi /etc/hosts and add
 <Your ingress controller IP> ingress1.test.cn
 <Your ingress controller IP> simpleingressroute.test.cn
@@ -20,3 +18,9 @@ vi /etc/hosts and add
 curl ingress1.test.cn
 curl simpleingressroute.test.cn
 curl simpleingressroute.test.cn -H "Eason:yes"
+curl simpleingressroute.test.cn -H "Source:I'm Ray"
+curl simpleingressroute.test.cn -H "Source:I'm Eason"
+curl simpleingressroute.test.cn -H "Source:I'm Steven"
+
+
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/nginx-0.30.0/deploy/static/provider/baremetal/service-nodeport.yaml
