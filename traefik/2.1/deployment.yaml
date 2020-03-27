@@ -1,0 +1,76 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: traefik-ingress-controller
+  labels:
+    app: traefik-ingress-controller
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: traefik-ingress-controller
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: traefik-ingress-controller
+    spec:
+      serviceAccountName: traefik-ingress-controller
+      terminationGracePeriodSeconds: 60
+      hostNetwork: false
+      containers:
+      - image: traefik:2.1
+        name: traefik-ingress-controller
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "50Mi"
+          limits:
+            cpu: "300m"
+            memory: "150Mi"
+        readinessProbe:
+          httpGet:
+            path: /ping
+            port: 9000
+          failureThreshold: 1
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 2
+        livenessProbe:
+          httpGet:
+            path: /ping
+            port: 9000
+          failureThreshold: 3
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 2
+        ports:
+        - name: traefik
+          containerPort: 9000
+          protocol: TCP
+        - name: web
+          containerPort: 8000
+          protocol: TCP
+        - name: websecure
+          containerPort: 8443
+          protocol: TCP
+        volumeMounts:
+          - name: data
+            mountPath: /data
+        args:
+          - --entryPoints.traefik.address=:9000
+          - --entryPoints.web.address=:8000
+          - --entryPoints.websecure.address=:8443
+          - --api.dashboard=true
+          - --ping=true
+          - --providers.kubernetescrd
+      volumes:
+        - name: data
+          emptyDir: {}
