@@ -3,6 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: traefik-ingress-controller
+  namespace: traefik-2-1
   labels:
     app: traefik-ingress-lb
 spec:
