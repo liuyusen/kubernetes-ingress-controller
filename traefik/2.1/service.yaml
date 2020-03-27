@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: traefik-2-1
+  name: traefik
   labels:
-    app: traefik-2-1
+    app: traefik
 spec:
   type: NodePort
   selector:

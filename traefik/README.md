@@ -5,8 +5,10 @@ mv linux-amd64/helm /usr/local/bin/helm
 git clone https://github.com/containous/traefik-helm-chart
 helm install traefik-2-0 ./traefik-helm-chart/traefik --set="image.tag=2.0,additionalArguments={--providers.kubernetesingress,--providers.kubernetesingress.ingressclass=traefik-2.0}"
 
+kubectl apply -f ./kubernetes-ingress-controller/traefik/1.7/namespace.yaml
 kubectl apply -f ./kubernetes-ingress-controller/traefik/1.7/
 
+kubectl apply -f ./kubernetes-ingress-controller/traefik/2.1/rbac/namespace.yaml
 kubectl apply -f ./kubernetes-ingress-controller/traefik/2.1/rbac/
 kubectl apply -f ./kubernetes-ingress-controller/traefik/2.1/crds/
 kubectl apply -f ./kubernetes-ingress-controller/traefik/2.1/

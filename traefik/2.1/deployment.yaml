@@ -4,12 +4,12 @@ kind: Deployment
 metadata:
   name: traefik-ingress-controller
   labels:
-    app: traefik-ingress-controller
+    app: traefik-ingress-lb
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: traefik-ingress-controller
+      app: traefik-ingress-lb
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -18,14 +18,15 @@ spec:
   template:
     metadata:
       labels:
-        app: traefik-ingress-controller
+        app: traefik-ingress-lb
+        name: traefik-ingress-lb
     spec:
       serviceAccountName: traefik-ingress-controller
       terminationGracePeriodSeconds: 60
       hostNetwork: false
       containers:
       - image: traefik:2.1
-        name: traefik-ingress-controller
+        name: traefik-ingress-lb
         resources:
           requests:
             cpu: "100m"
