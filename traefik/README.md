@@ -59,7 +59,7 @@ kubectl apply -f ./kubernetes-ingress-controller/traefik/samples/simple.yaml
 
 2.3 Verification
 Get ingress controller IP:
-kubectl get service traefik-2-2 -n traefik-2-2
+kubectl get service traefik-ingress-service -n traefik-2-2
 vi /etc/hosts and add
 <Your ingress controller IP> ingress1.test.cn
 <Your ingress controller IP> simpleingressroute.test.cn
