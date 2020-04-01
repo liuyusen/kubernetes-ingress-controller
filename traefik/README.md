@@ -55,7 +55,7 @@ kubectl apply -f ./kubernetes-ingress-controller/traefik/2.2/crds/
 kubectl apply -f ./kubernetes-ingress-controller/traefik/2.2/
 
 2.2 Install Sample
-kubectl apply -f ./kubernetes-ingress-controller/traefik/samples/simple.yaml
+kubectl apply -f ./kubernetes-ingress-controller/traefik/samples/2.2.yaml
 
 2.3 Verification
 Get ingress controller IP:
@@ -72,7 +72,7 @@ curl simpleingressroute.test.cn -H "Source:I'm Eason"
 curl simpleingressroute.test.cn -H "Source:I'm Steven"
 
 2.4 Uninstall
-kubectl delete -f ./kubernetes-ingress-controller/traefik/samples/simple.yaml
+kubectl delete -f ./kubernetes-ingress-controller/traefik/samples/2.2.yaml
 
 kubectl delete -f ./kubernetes-ingress-controller/traefik/2.2/
 kubectl delete -f ./kubernetes-ingress-controller/traefik/2.2/rbac/

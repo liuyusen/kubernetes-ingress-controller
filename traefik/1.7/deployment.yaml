@@ -37,6 +37,7 @@ spec:
             - --api
             - --kubernetes
             - --logLevel=INFO
+            - --providers.kubernetesingress.ingressclass=traefik-1.7
 ---
 kind: Service
 apiVersion: v1

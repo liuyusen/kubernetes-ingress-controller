@@ -84,7 +84,7 @@ kind: Ingress
 metadata:
   name: ingress1
   annotations:
-    kubernetes.io/ingress.class: traefik-1.7
+    kubernetes.io/ingress.class: traefik-2.2
     traefik.ingress.kubernetes.io/service-weights: |
       service1: 50%
       service2: 50%

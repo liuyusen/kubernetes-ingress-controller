@@ -74,6 +74,7 @@ spec:
           - --ping=true
           - --providers.kubernetescrd
           - --providers.kubernetesingress
+          - --providers.kubernetesingress.ingressclass=traefik-2.2
       volumes:
         - name: data
           emptyDir: {}
