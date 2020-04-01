@@ -21,7 +21,7 @@ spec:
           image: dockersamples/static-site
           env:
             - name: AUTHOR
-              value: Ray
+              value: app3
           ports:
             - name: http
               containerPort: 80
@@ -48,7 +48,7 @@ spec:
           image: dockersamples/static-site
           env:
             - name: AUTHOR
-              value: Kelvin
+              value: app4
           ports:
             - name: http
               containerPort: 80
