@@ -16,3 +16,13 @@ curl ingress-nginx.test.cn -H "Source:Michael"
 curl ingress-nginx.test.cn -H "Source:I'm Eason"
 curl ingress-nginx.test.cn -H "Source:I'm Steven"
 
+kubectl apply -f ./kubernetes-ingress-controller/ingress-nginx/samples/weight.yaml
+curl ingress-nginx.test.cn
+curl ingress-nginx.test.cn -H "Source:Michael"
+curl ingress-nginx.test.cn -H "Source:I'm Eason"
+curl ingress-nginx.test.cn -H "Source:I'm Steven"
+
+4. Uninstall
+kubectl delete -f ./kubernetes-ingress-controller/ingress-nginx/samples/simple.yaml
+kubectl delete -f ./kubernetes-ingress-controller/ingress-nginx/0.30.0/service-nodeport.yaml
+kubectl delete -f ./kubernetes-ingress-controller/ingress-nginx/0.30.0/mandatory.yaml

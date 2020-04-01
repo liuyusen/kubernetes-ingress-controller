@@ -103,7 +103,6 @@ metadata:
     nginx.ingress.kubernetes.io/canary: "true"
     nginx.ingress.kubernetes.io/canary-by-header: "Source"
     nginx.ingress.kubernetes.io/canary-by-header-pattern: "tom|jerry"
-    nginx.ingress.kubernetes.io/canary-weight: "50"
 spec:
   rules:
     - host: ingress-nginx.test.cn
