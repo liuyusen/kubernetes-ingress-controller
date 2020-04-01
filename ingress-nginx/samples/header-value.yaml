@@ -6,7 +6,8 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/canary: "true"
-    nginx.ingress.kubernetes.io/canary-weight: "50"
+    nginx.ingress.kubernetes.io/canary-by-header: "Source"
+    nginx.ingress.kubernetes.io/canary-by-header-value: "tom"
 spec:
   rules:
     - host: ingress-nginx.test.cn

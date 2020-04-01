@@ -13,14 +13,19 @@ vi /etc/hosts and add
 
 curl ingress-nginx.test.cn
 curl ingress-nginx.test.cn -H "Source:Michael"
-curl ingress-nginx.test.cn -H "Source:I'm Eason"
-curl ingress-nginx.test.cn -H "Source:I'm Steven"
+curl ingress-nginx.test.cn -H "Source:tom"
+curl ingress-nginx.test.cn -H "Source:jerry"
 
-kubectl apply -f ./kubernetes-ingress-controller/ingress-nginx/samples/weight.yaml
+kubectl replace -f ./kubernetes-ingress-controller/ingress-nginx/samples/weight.yaml
 curl ingress-nginx.test.cn
 curl ingress-nginx.test.cn -H "Source:Michael"
-curl ingress-nginx.test.cn -H "Source:I'm Eason"
-curl ingress-nginx.test.cn -H "Source:I'm Steven"
+curl ingress-nginx.test.cn -H "Source:jerry"
+
+kubectl replace -f ./kubernetes-ingress-controller/ingress-nginx/samples/header-value.yaml
+curl ingress-nginx.test.cn
+curl ingress-nginx.test.cn -H "Source:Michael"
+curl ingress-nginx.test.cn -H "Source:tom"
+curl ingress-nginx.test.cn -H "Source:jerry"
 
 4. Uninstall
 kubectl delete -f ./kubernetes-ingress-controller/ingress-nginx/samples/simple.yaml
