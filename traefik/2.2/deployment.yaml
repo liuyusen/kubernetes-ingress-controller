@@ -73,6 +73,7 @@ spec:
           - --api.dashboard=true
           - --ping=true
           - --providers.kubernetescrd
+          - --providers.kubernetescrd.ingressclass=traefik-2.2
           - --providers.kubernetesingress
           - --providers.kubernetesingress.ingressclass=traefik-2.2
       volumes:

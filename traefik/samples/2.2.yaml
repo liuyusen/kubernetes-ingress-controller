@@ -106,6 +106,8 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: simpleingressroute
+  annotations:
+    kubernetes.io/ingress.class: traefik-2.2
   namespace: default
 spec:
   entryPoints:
@@ -125,6 +127,8 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: simpleingressroute-header-regexp
+  annotations:
+    kubernetes.io/ingress.class: traefik-2.2
   namespace: default
 spec:
   entryPoints:
